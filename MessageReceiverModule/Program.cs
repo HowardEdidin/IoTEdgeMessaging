@@ -104,7 +104,7 @@ namespace MessageReceiverModule
         /// It just pipe the messages without any change.
         /// It prints all the incoming messages.
         /// </summary>
-        static async Task<MessageResponse> PipeMessage(Message message, object userContext)
+        static Task<MessageResponse> PipeMessage(Message message, object userContext)
         {
             int counterValue = Interlocked.Increment(ref counter);
 
@@ -128,7 +128,7 @@ namespace MessageReceiverModule
 //                await deviceClient.SendEventAsync("output1", pipeMessage);
 //                Console.WriteLine("Received message sent");
 //            }
-            return MessageResponse.Completed;
+            return Task.FromResult(MessageResponse.Completed);
         }
         
     }
