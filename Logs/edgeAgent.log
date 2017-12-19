@@ -1,0 +1,164 @@
+2017-12-19 18:26:37 [INF] - Starting module management agent.
+2017-12-19 18:26:37 [INF] - Version - 1.0.7516610 (03c94f85d0833a861a43c669842f0817924911d5)
+2017-12-19 18:26:37 [INF] - 
+        █████╗ ███████╗██╗   ██╗██████╗ ███████╗
+       ██╔══██╗╚══███╔╝██║   ██║██╔══██╗██╔════╝
+       ███████║  ███╔╝ ██║   ██║██████╔╝█████╗
+       ██╔══██║ ███╔╝  ██║   ██║██╔══██╗██╔══╝
+       ██║  ██║███████╗╚██████╔╝██║  ██║███████╗
+       ╚═╝  ╚═╝╚══════╝ ╚═════╝ ╚═╝  ╚═╝╚══════╝
+
+ ██╗ ██████╗ ████████╗    ███████╗██████╗  ██████╗ ███████╗
+ ██║██╔═══██╗╚══██╔══╝    ██╔════╝██╔══██╗██╔════╝ ██╔════╝
+ ██║██║   ██║   ██║       █████╗  ██║  ██║██║  ███╗█████╗
+ ██║██║   ██║   ██║       ██╔══╝  ██║  ██║██║   ██║██╔══╝
+ ██║╚██████╔╝   ██║       ███████╗██████╔╝╚██████╔╝███████╗
+ ╚═╝ ╚═════╝    ╚═╝       ╚══════╝╚═════╝  ╚═════╝ ╚══════╝
+
+2017-12-19 18:26:37 [DBG] - Device client for edge agent created.
+2017-12-19 18:26:37 [INF] - Edge agent attempting to connect to IoT Hub via AMQP...
+2017-12-19 18:26:38 [DBG] - Connection status changed to Connected with reason Connection_Ok
+2017-12-19 18:26:38 [INF] - Edge agent connected to IoT Hub via AMQP.
+2017-12-19 18:26:39 [DBG] - Edge agent connection to IoT Hub set up.
+2017-12-19 18:26:39 [DBG] - TwinConfigSource Created
+2017-12-19 18:26:39 [INF] - Edge agent config backup created here - backup.json
+2017-12-19 18:26:39 [INF] - Using in-memory store
+2017-12-19 18:26:40 [DBG] - Edge agent updated deployment config from desired properties.
+2017-12-19 18:26:40 [DBG] - Updated edge agent configuration from twin.
+2017-12-19 18:26:40 [DBG] - Edge agent created.
+2017-12-19 18:26:40 [DBG] - HealthRestartPlanner created Plan, with 9 commands.
+2017-12-19 18:26:40 [INF] - Plan execution started
+2017-12-19 18:26:40 [INF] - Executing command: "docker pull <removed>/producer:latest"
+2017-12-19 18:26:41 [DBG] - Executing command for operation ["pull"] succeeded.
+2017-12-19 18:26:41 [INF] - Executing command: "docker pull <removed>/consumer:latest"
+2017-12-19 18:26:42 [DBG] - Executing command for operation ["pull"] succeeded.
+2017-12-19 18:26:42 [INF] - Executing command: "docker pull microsoft/azureiotedge-hub:1.0-preview"
+2017-12-19 18:26:43 [DBG] - Executing command for operation ["pull"] succeeded.
+2017-12-19 18:26:43 [INF] - Executing command: "docker create {\"Env\":[\"EdgeModuleCACertificateFile=/mnt/edgemodule/edge-device-ca.cert.pem\",\"EdgeHubConnectionString=******\"],\"Image\":\"<removed>/producer:latest\",\"Labels\":{\"net.azure-devices.edge.owner\":\"Microsoft.Azure.Devices.Edge.Agent\",\"net.azure-devices.edge.normalizedCreateOptions\":\"{\\"HostConfig\\":{\\"Binds\\":[\\"/tmp/input:/filedrop\\"]}}\",\"net.azure-devices.edge.restartPolicy\":\"Always\",\"net.azure-devices.edge.desiredStatus\":\"Running\",\"net.azure-devices.edge.version\":\"1.0\"},\"HostConfig\":{\"Binds\":[\"/tmp/input:/filedrop\",\"edgemodule:/mnt/edgemodule:ro\"],\"LogConfig\":{\"Type\":\"json-file\",\"Config\":{\"max-size\":\"10m\"}}},\"NetworkingConfig\":{\"EndpointsConfig\":{\"azure-iot-edge\":{}}}}"
+2017-12-19 18:26:43 [DBG] - Executing command for operation ["create"] succeeded.
+2017-12-19 18:26:43 [INF] - Executing command: "docker create {\"Env\":[\"EdgeModuleCACertificateFile=/mnt/edgemodule/edge-device-ca.cert.pem\",\"EdgeHubConnectionString=******\"],\"Image\":\"<removed>/consumer:latest\",\"Labels\":{\"net.azure-devices.edge.owner\":\"Microsoft.Azure.Devices.Edge.Agent\",\"net.azure-devices.edge.normalizedCreateOptions\":\"{}\",\"net.azure-devices.edge.restartPolicy\":\"Always\",\"net.azure-devices.edge.desiredStatus\":\"Running\",\"net.azure-devices.edge.version\":\"1.0\"},\"HostConfig\":{\"Binds\":[\"edgemodule:/mnt/edgemodule:ro\"],\"LogConfig\":{\"Type\":\"json-file\",\"Config\":{\"max-size\":\"10m\"}}},\"NetworkingConfig\":{\"EndpointsConfig\":{\"azure-iot-edge\":{}}}}"
+2017-12-19 18:26:43 [DBG] - Executing command for operation ["create"] succeeded.
+2017-12-19 18:26:43 [INF] - Executing command: "docker create {\"Env\":[\"EdgeModuleHubServerCAChainCertificateFile=/mnt/edgehub/edge-chain-ca.cert.pem\",\"EdgeModuleHubServerCertificateFile=/mnt/edgehub/edge-hub-server.cert.pfx\",\"IotHubConnectionString=******\",\"RuntimeLogLevel=Debug\"],\"Image\":\"microsoft/azureiotedge-hub:1.0-preview\",\"Labels\":{\"net.azure-devices.edge.owner\":\"Microsoft.Azure.Devices.Edge.Agent\",\"net.azure-devices.edge.normalizedCreateOptions\":\"{}\",\"net.azure-devices.edge.restartPolicy\":\"Always\",\"net.azure-devices.edge.desiredStatus\":\"Running\"},\"HostConfig\":{\"Binds\":[\"edgehub:/mnt/edgehub:ro\"],\"LogConfig\":{\"Type\":\"json-file\",\"Config\":{\"max-size\":\"10m\"}},\"PortBindings\":{\"8883/tcp\":[{\"HostPort\":\"8883\"}],\"443/tcp\":[{\"HostPort\":\"443\"}]}},\"NetworkingConfig\":{\"EndpointsConfig\":{\"azure-iot-edge\":{\"Aliases\":[\"<removed>\"]}}}}"
+2017-12-19 18:26:43 [DBG] - Executing command for operation ["create"] succeeded.
+2017-12-19 18:26:43 [INF] - Executing command: "docker start producer"
+2017-12-19 18:26:44 [DBG] - Executing command for operation ["start"] succeeded.
+2017-12-19 18:26:44 [INF] - Executing command: "docker start consumer"
+2017-12-19 18:26:44 [DBG] - Executing command for operation ["start"] succeeded.
+2017-12-19 18:26:44 [INF] - Executing command: "docker start edgeHub"
+2017-12-19 18:26:45 [DBG] - Executing command for operation ["start"] succeeded.
+2017-12-19 18:26:45 [INF] - Plan execution ended
+2017-12-19 18:26:45 [INF] - Updated reported properties
+2017-12-19 18:26:50 [DBG] - HealthRestartPlanner created Plan, with 0 commands.
+2017-12-19 18:26:55 [DBG] - HealthRestartPlanner created Plan, with 0 commands.
+2017-12-19 18:27:00 [DBG] - HealthRestartPlanner created Plan, with 0 commands.
+2017-12-19 18:27:05 [DBG] - HealthRestartPlanner created Plan, with 0 commands.
+2017-12-19 18:27:10 [DBG] - HealthRestartPlanner created Plan, with 0 commands.
+2017-12-19 18:27:16 [DBG] - HealthRestartPlanner created Plan, with 0 commands.
+2017-12-19 18:27:21 [DBG] - HealthRestartPlanner created Plan, with 0 commands.
+2017-12-19 18:27:26 [DBG] - HealthRestartPlanner created Plan, with 0 commands.
+2017-12-19 18:27:31 [DBG] - HealthRestartPlanner created Plan, with 0 commands.
+2017-12-19 18:27:36 [DBG] - HealthRestartPlanner created Plan, with 0 commands.
+2017-12-19 18:27:41 [DBG] - HealthRestartPlanner created Plan, with 0 commands.
+2017-12-19 18:27:46 [DBG] - HealthRestartPlanner created Plan, with 0 commands.
+2017-12-19 18:27:51 [DBG] - HealthRestartPlanner created Plan, with 0 commands.
+2017-12-19 18:27:56 [DBG] - HealthRestartPlanner created Plan, with 0 commands.
+2017-12-19 18:28:01 [DBG] - HealthRestartPlanner created Plan, with 0 commands.
+2017-12-19 18:28:06 [DBG] - HealthRestartPlanner created Plan, with 0 commands.
+2017-12-19 18:28:11 [DBG] - HealthRestartPlanner created Plan, with 0 commands.
+2017-12-19 18:28:16 [DBG] - HealthRestartPlanner created Plan, with 0 commands.
+2017-12-19 18:28:21 [DBG] - HealthRestartPlanner created Plan, with 0 commands.
+2017-12-19 18:28:26 [DBG] - HealthRestartPlanner created Plan, with 0 commands.
+2017-12-19 18:28:31 [DBG] - HealthRestartPlanner created Plan, with 0 commands.
+2017-12-19 18:28:36 [DBG] - HealthRestartPlanner created Plan, with 0 commands.
+2017-12-19 18:28:41 [DBG] - HealthRestartPlanner created Plan, with 0 commands.
+2017-12-19 18:28:46 [DBG] - HealthRestartPlanner created Plan, with 0 commands.
+2017-12-19 18:28:51 [DBG] - HealthRestartPlanner created Plan, with 0 commands.
+2017-12-19 18:28:56 [DBG] - HealthRestartPlanner created Plan, with 0 commands.
+2017-12-19 18:29:01 [DBG] - HealthRestartPlanner created Plan, with 0 commands.
+2017-12-19 18:29:06 [DBG] - HealthRestartPlanner created Plan, with 0 commands.
+2017-12-19 18:29:11 [DBG] - HealthRestartPlanner created Plan, with 0 commands.
+2017-12-19 18:29:16 [DBG] - HealthRestartPlanner created Plan, with 0 commands.
+2017-12-19 18:29:21 [DBG] - HealthRestartPlanner created Plan, with 0 commands.
+2017-12-19 18:29:26 [DBG] - HealthRestartPlanner created Plan, with 0 commands.
+2017-12-19 18:29:31 [DBG] - HealthRestartPlanner created Plan, with 0 commands.
+2017-12-19 18:29:36 [DBG] - HealthRestartPlanner created Plan, with 0 commands.
+2017-12-19 18:29:41 [DBG] - HealthRestartPlanner created Plan, with 0 commands.
+2017-12-19 18:29:46 [DBG] - HealthRestartPlanner created Plan, with 0 commands.
+2017-12-19 18:29:51 [DBG] - HealthRestartPlanner created Plan, with 0 commands.
+2017-12-19 18:29:56 [DBG] - HealthRestartPlanner created Plan, with 0 commands.
+2017-12-19 18:30:01 [DBG] - HealthRestartPlanner created Plan, with 0 commands.
+2017-12-19 18:30:06 [DBG] - HealthRestartPlanner created Plan, with 0 commands.
+2017-12-19 18:30:11 [DBG] - HealthRestartPlanner created Plan, with 0 commands.
+2017-12-19 18:30:16 [DBG] - HealthRestartPlanner created Plan, with 0 commands.
+2017-12-19 18:30:21 [DBG] - HealthRestartPlanner created Plan, with 0 commands.
+2017-12-19 18:30:26 [DBG] - HealthRestartPlanner created Plan, with 0 commands.
+2017-12-19 18:30:31 [DBG] - HealthRestartPlanner created Plan, with 0 commands.
+2017-12-19 18:30:37 [DBG] - HealthRestartPlanner created Plan, with 0 commands.
+2017-12-19 18:30:42 [DBG] - HealthRestartPlanner created Plan, with 0 commands.
+2017-12-19 18:30:47 [DBG] - HealthRestartPlanner created Plan, with 0 commands.
+2017-12-19 18:30:52 [DBG] - HealthRestartPlanner created Plan, with 0 commands.
+2017-12-19 18:30:57 [DBG] - HealthRestartPlanner created Plan, with 0 commands.
+2017-12-19 18:31:02 [DBG] - HealthRestartPlanner created Plan, with 0 commands.
+2017-12-19 18:31:07 [DBG] - HealthRestartPlanner created Plan, with 0 commands.
+2017-12-19 18:31:12 [DBG] - HealthRestartPlanner created Plan, with 0 commands.
+2017-12-19 18:31:17 [DBG] - HealthRestartPlanner created Plan, with 0 commands.
+2017-12-19 18:31:22 [DBG] - HealthRestartPlanner created Plan, with 0 commands.
+2017-12-19 18:31:27 [DBG] - HealthRestartPlanner created Plan, with 0 commands.
+2017-12-19 18:31:32 [DBG] - HealthRestartPlanner created Plan, with 0 commands.
+2017-12-19 18:31:37 [DBG] - HealthRestartPlanner created Plan, with 0 commands.
+2017-12-19 18:31:42 [DBG] - HealthRestartPlanner created Plan, with 0 commands.
+2017-12-19 18:31:47 [DBG] - HealthRestartPlanner created Plan, with 0 commands.
+2017-12-19 18:31:52 [DBG] - HealthRestartPlanner created Plan, with 0 commands.
+2017-12-19 18:31:57 [DBG] - HealthRestartPlanner created Plan, with 0 commands.
+2017-12-19 18:32:02 [DBG] - HealthRestartPlanner created Plan, with 0 commands.
+2017-12-19 18:32:07 [DBG] - HealthRestartPlanner created Plan, with 0 commands.
+2017-12-19 18:32:12 [DBG] - HealthRestartPlanner created Plan, with 0 commands.
+2017-12-19 18:32:17 [DBG] - HealthRestartPlanner created Plan, with 0 commands.
+2017-12-19 18:32:22 [DBG] - HealthRestartPlanner created Plan, with 0 commands.
+2017-12-19 18:32:27 [DBG] - HealthRestartPlanner created Plan, with 0 commands.
+2017-12-19 18:32:32 [DBG] - HealthRestartPlanner created Plan, with 0 commands.
+2017-12-19 18:32:38 [DBG] - HealthRestartPlanner created Plan, with 0 commands.
+2017-12-19 18:32:43 [DBG] - HealthRestartPlanner created Plan, with 0 commands.
+2017-12-19 18:32:48 [DBG] - HealthRestartPlanner created Plan, with 0 commands.
+2017-12-19 18:32:53 [DBG] - HealthRestartPlanner created Plan, with 0 commands.
+2017-12-19 18:32:58 [DBG] - HealthRestartPlanner created Plan, with 0 commands.
+2017-12-19 18:33:03 [DBG] - HealthRestartPlanner created Plan, with 0 commands.
+2017-12-19 18:33:08 [DBG] - HealthRestartPlanner created Plan, with 0 commands.
+2017-12-19 18:33:13 [DBG] - HealthRestartPlanner created Plan, with 0 commands.
+2017-12-19 18:33:18 [DBG] - HealthRestartPlanner created Plan, with 0 commands.
+2017-12-19 18:33:23 [DBG] - HealthRestartPlanner created Plan, with 0 commands.
+2017-12-19 18:33:28 [DBG] - HealthRestartPlanner created Plan, with 0 commands.
+2017-12-19 18:33:33 [DBG] - HealthRestartPlanner created Plan, with 0 commands.
+2017-12-19 18:33:38 [DBG] - HealthRestartPlanner created Plan, with 0 commands.
+2017-12-19 18:33:43 [DBG] - HealthRestartPlanner created Plan, with 0 commands.
+2017-12-19 18:33:48 [DBG] - HealthRestartPlanner created Plan, with 0 commands.
+2017-12-19 18:33:53 [DBG] - HealthRestartPlanner created Plan, with 0 commands.
+2017-12-19 18:33:58 [DBG] - HealthRestartPlanner created Plan, with 0 commands.
+2017-12-19 18:34:03 [DBG] - HealthRestartPlanner created Plan, with 0 commands.
+2017-12-19 18:34:08 [DBG] - HealthRestartPlanner created Plan, with 0 commands.
+2017-12-19 18:34:13 [DBG] - HealthRestartPlanner created Plan, with 0 commands.
+2017-12-19 18:34:18 [DBG] - HealthRestartPlanner created Plan, with 0 commands.
+2017-12-19 18:34:23 [DBG] - HealthRestartPlanner created Plan, with 0 commands.
+2017-12-19 18:34:28 [DBG] - HealthRestartPlanner created Plan, with 0 commands.
+2017-12-19 18:34:33 [DBG] - HealthRestartPlanner created Plan, with 0 commands.
+2017-12-19 18:34:38 [DBG] - HealthRestartPlanner created Plan, with 0 commands.
+2017-12-19 18:34:43 [DBG] - HealthRestartPlanner created Plan, with 0 commands.
+2017-12-19 18:34:48 [DBG] - HealthRestartPlanner created Plan, with 0 commands.
+2017-12-19 18:34:53 [DBG] - HealthRestartPlanner created Plan, with 0 commands.
+2017-12-19 18:34:58 [DBG] - HealthRestartPlanner created Plan, with 0 commands.
+2017-12-19 18:35:03 [DBG] - HealthRestartPlanner created Plan, with 0 commands.
+2017-12-19 18:35:08 [DBG] - HealthRestartPlanner created Plan, with 0 commands.
+2017-12-19 18:35:13 [DBG] - HealthRestartPlanner created Plan, with 0 commands.
+2017-12-19 18:35:18 [DBG] - HealthRestartPlanner created Plan, with 0 commands.
+2017-12-19 18:35:23 [DBG] - HealthRestartPlanner created Plan, with 0 commands.
+2017-12-19 18:35:28 [DBG] - HealthRestartPlanner created Plan, with 0 commands.
+2017-12-19 18:35:33 [DBG] - HealthRestartPlanner created Plan, with 0 commands.
+2017-12-19 18:35:38 [DBG] - HealthRestartPlanner created Plan, with 0 commands.
+2017-12-19 18:35:43 [DBG] - HealthRestartPlanner created Plan, with 0 commands.
+2017-12-19 18:35:48 [DBG] - HealthRestartPlanner created Plan, with 0 commands.
+2017-12-19 18:35:53 [DBG] - HealthRestartPlanner created Plan, with 0 commands.
+2017-12-19 18:35:58 [DBG] - HealthRestartPlanner created Plan, with 0 commands.
+2017-12-19 18:36:03 [DBG] - HealthRestartPlanner created Plan, with 0 commands.
+2017-12-19 18:36:08 [DBG] - HealthRestartPlanner created Plan, with 0 commands.
+2017-12-19 18:36:13 [DBG] - HealthRestartPlanner created Plan, with 0 commands.
+2017-12-19 18:36:18 [DBG] - HealthRestartPlanner created Plan, with 0 commands.
